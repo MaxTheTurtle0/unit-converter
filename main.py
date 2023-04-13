@@ -12,6 +12,11 @@ T.pack(pady=20)
 input_box = tk.Entry(window, width=12, font=("Arial", 14))
 input_box.pack(side="left", padx="20", pady="20")
 
+#this is where the user can see the result of the conversion
+output_box = tk.Text(window, width="12", height="1", font=("Arial", 14))
+output_box.configure(state="disabled")
+output_box.pack(side="left", padx="20", pady="20")
+
 #this button frame is where all the buttons are which are used for manoeuvring through the app
 buttonframe = tk.Frame(window)
 buttonframe.rowconfigure(0, weight=1)
@@ -26,14 +31,14 @@ T_button.grid(row=0, column=0, sticky="nsew")
 
 
 L_button = tk.Button(buttonframe, text="Length", font=("Arial", 16))
-L_button.grid(row=1, column=0, sticky="nsew")
+L_button.grid(row=1, column=0)
 
 A_button = tk.Button(buttonframe, text="Area", font=("Arial", 16))
-A_button.grid(row=2, column=0, sticky="nsew")
+A_button.grid(row=2, column=0)
 
 V_button = tk.Button(buttonframe, text="Volume", font=("Arial", 16))
-V_button.grid(row=3, column=0, sticky="nsew")
+V_button.grid(row=3, column=0)
 
 buttonframe.pack(fill="both", expand=True, side="left", padx=20, pady=20, anchor="nw")
 
-window.mainloop()
+window.mainloop()   
