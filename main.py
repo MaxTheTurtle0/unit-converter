@@ -29,17 +29,21 @@ sidebar.rowconfigure(3, weight=1)
 sidebar.columnconfigure(0, weight=1)
 
 #these buttons changing to the unit which you want to convert(Temperature, Length, Area, Volume)
-T_button = tk.Button(sidebar, text="Temperature", font=("Arial", 16))
+T_button = tk.Button(sidebar, text="Temperature", font=("Arial", 16), bg="lightgrey")
+T_button.config(relief="flat")
 T_button.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
 
 
-L_button = tk.Button(sidebar, text="Length", font=("Arial", 16))
+L_button = tk.Button(sidebar, text="Length", font=("Arial", 16),  bg="lightgrey")
+L_button.config(relief="flat")
 L_button.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
-A_button = tk.Button(sidebar, text="Area", font=("Arial", 16))
+A_button = tk.Button(sidebar, text="Area", font=("Arial", 16), bg="lightgrey")
+A_button.config(relief="flat")
 A_button.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
-V_button = tk.Button(sidebar, text="Volume", font=("Arial", 16))
+V_button = tk.Button(sidebar, text="Volume", font=("Arial", 16), bg="lightgrey")
+V_button.config(relief="flat")
 V_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
 sidebar.pack(side="left", fill="y")
