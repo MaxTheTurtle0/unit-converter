@@ -28,7 +28,6 @@ def T_convert():
         result = value
     
     output_box_text.set(result)
-        
 
 ctk.set_appearance_mode("dark")
 #this is so that the user knows what unit he is converting
@@ -64,10 +63,58 @@ sidebar.columnconfigure(0, weight=1)
 T_button = ctk.CTkButton(sidebar, text="Temperature", font=("Arial", 16))
 T_button.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
 
-T_select_input = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", "Fahrenheit [°F]", "kelvin [K]"], width=130)
+T_select_input = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
+                                                             "Fahrenheit [°F]", 
+                                                             "kelvin [K]"], width=130)
 T_select_input.place(x=175, y=105)
-T_select_output = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", "Fahrenheit [°F]", "kelvin [K]"], width=130)
+T_select_output = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
+                                                              "Fahrenheit [°F]", 
+                                                              "kelvin [K]"], width=130)
 T_select_output.place(x=360, y=105)
+
+L_select_input = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
+                                                             "decimeter [dm]", 
+                                                             "meter [m]", 
+                                                             "kilometer [km]", 
+                                                             "inch [in]", 
+                                                             "foot [ft]", 
+                                                             "yard [yd]", 
+                                                             "mile [mi]"], width=130)
+L_select_output = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
+                                                              "decimeter", 
+                                                              "meter [m]", 
+                                                              "kilometer [km]", 
+                                                              "inch [in]", 
+                                                              "foot [ft]", 
+                                                              "yard [yd]", 
+                                                              "mile [mi]"], width=130)
+
+A_select_input = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
+                                                             "square decimetre [dm²]", 
+                                                             "square meter [m²]", 
+                                                             "square decametre [dam²]",
+                                                             "square hectometre [hm²]", 
+                                                             "square kilometer [km²]", 
+                                                             "square inch [in²]", 
+                                                             "square foot [ft²]", 
+                                                             "square yard [yd²]", 
+                                                             "square mile [mi²]",
+                                                             "acre"], width=130)
+A_select_output = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
+                                                             "square decimetre [dm²]", 
+                                                             "square meter [m²]", 
+                                                             "square decametre [dam²]",
+                                                             "square hectometre [hm²]", 
+                                                             "square kilometer [km²]", 
+                                                             "square inch [in²]", 
+                                                             "square foot [ft²]", 
+                                                             "square yard [yd²]", 
+                                                             "square mile [mi²]",
+                                                             "acre"], width=130)
+
+#going to do this tmr V_select_input = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", "Fahrenheit [°F]", "kelvin [K]"], width=130)
+#going to do this tmr V_select_output = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", "Fahrenheit [°F]", "kelvin [K]"], width=130)
+
 
 L_button = ctk.CTkButton(sidebar, text="Length", font=("Arial", 16))
 L_button.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
