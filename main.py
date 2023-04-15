@@ -28,12 +28,24 @@ def T_convert():
         result = value
     
     output_box_text.set(result)
+
+def L_button_click():
+    # Change the Label text to "Length"
+    Label.configure(text="Length")
+
+    # Change the T_select_input to L_select_input
+    T_select_input.destroy()
+    L_select_input.pack(x=175, y=105)
+    
+    # Change the T_select_output to L_select_output
+    T_select_output.destroy()
+    L_select_output.pack(x=360, y=105)
         
 
 ctk.set_appearance_mode("dark")
 #this is so that the user knows what unit he is converting
-T = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color="white", bg_color="black")
-T.pack(fill="both")
+Label = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color="white", bg_color="black")
+Label.pack(fill="both")
 
 #this is where the user can see the result of the conversion
 output_box_text = ctk.StringVar()
@@ -69,7 +81,12 @@ T_select_input.place(x=175, y=105)
 T_select_output = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", "Fahrenheit [°F]", "kelvin [K]"], width=130)
 T_select_output.place(x=360, y=105)
 
-L_button = ctk.CTkButton(sidebar, text="Length", font=("Arial", 16))
+L_select_input = customtkinter.CTkOptionMenu(window, values=["Meter [m]", "kilometer [km]", "miele [mi]"], width=130)
+
+L_select_output = customtkinter.CTkOptionMenu(window, values=["Meter [m]", "kilometer [km]", "miele [mi]"], width=130)
+
+
+L_button = ctk.CTkButton(sidebar, text="Length", font=("Arial", 16), command=L_button_click)
 L_button.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
 A_button = ctk.CTkButton(sidebar, text="Area", font=("Arial", 16))
@@ -80,4 +97,4 @@ V_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
 sidebar.pack(side="left", fill="y")
 
-window.mainloop()   
+window.mainloop()
