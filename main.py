@@ -387,7 +387,22 @@ def V_convert():
                         ("liter [L]", "fluid ounce [fl oz (UK)]"): 35.1951,
                         ("liter [L]", "cubic centimeter [cm³]"): 1000,
                         ("liter [L]", "milliliter [mL]"): 1000,
-                        ("liter [L]", "liter [L]"): 1
+                        ("liter [L]", "liter [L]"): 1,
+
+                        ("cubic inch [in³]", "cubic kilometer [km³]"): 1.63871e-14,
+                        ("cubic inch [in³]", "cubic mile [mi³]"): 3.93147e-12,
+                        ("cubic inch [in³]", "cubic meter [m³]"): 1.63871e-5,
+                        ("cubic inch [in³]", "cubic yard [yd³]"): 0.0000214335,
+                        ("cubic inch [in³]", "cubic foot [ft³]"): 0.000578704,
+                        ("cubic inch [in³]", "cubic decimeter [dm³]"): 0.0163871,
+                        ("cubic inch [in³]", "gallon (US)"): 0.004329,
+                        ("cubic inch [in³]", "gallon (UK)"): 0.00529115,
+                        ("cubic inch [in³]", "liter [L]"): 0.0163871,
+                        ("cubic inch [in³]", "fluid ounce [fl oz (US)]"): 0.00173387,
+                        ("cubic inch [in³]", "fluid ounce [fl oz (UK)]"): 0.00176838,
+                        ("cubic inch [in³]", "cubic centimeter [cm³]"): 0.163871,
+                        ("cubic inch [in³]", "milliliter [mL]"): 0.163871,
+                        ("cubic inch [in³]", "cubic inch [in³]"): 1
     }
 
     factor = V_conversion_factors.get((input_unit, output_unit), 1)
