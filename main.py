@@ -1,6 +1,7 @@
 import tkinter as tk
 import customtkinter as ctk
 import customtkinter
+import pyperclip
 
 window = ctk.CTk()
 window.title("Unit Converter")
@@ -232,20 +233,6 @@ def V_convert():
                         ("cubic kilometer [km³]", "cubic centimeter [cm³]"): 1e+18,
                         ("cubic kilometer [km³]", "milliliter [mL]"): 1e+15,
                         ("cubic kilometer [km³]", "cubic kilometer [km³]"): 1,
-
-                        ("cubic mile [mi³]", "cubic meter [m³]"): 4.16818e+9,
-                        ("cubic mile [mi³]", "barrel (US)"): 1.03987e+10,
-                        ("cubic mile [mi³]", "barrel (UK)"): 9.26218e+9,
-                        ("cubic mile [mi³]", "cubic yard [yd³]"): 2.14359e+9,
-                        ("cubic mile [mi³]", "cubic foot [ft³]"): 5.78704e+10,
-                        ("cubic mile [mi³]", "cubic decimeter [dm³]"): 4.16818e+12,
-                        ("cubic mile [mi³]", "gallon (US)"): 1.10118e+11,
-                        ("cubic mile [mi³]", "gallon (UK)"): 9.14397e+10,
-                        ("cubic mile [mi³]", "liter [L]"): 4.16818e+12,
-                        ("cubic mile [mi³]", "cubic inch [in³]"): 2.5515e+14,
-                        ("cubic mile [mi³]", "fluid ounce [fl oz (US)]"): 3.53268e+11,
-                        ("cubic mile [mi³]", "fluid ounce [fl oz (UK)]"): 2.94328e+11,
-                        ("cubic mile [mi³]", "cubic centimeter [cm³]"): 4.16818e+12,
     }
 
     factor = V_conversion_factors.get((input_unit, output_unit), 1)
@@ -333,22 +320,26 @@ def show_volume_widgets():
     V_select_output.place(x=360, y=105)
     V_Label.pack(fill="both")
 
+def copy_to_clipboard():
+    pyperclip.copy(output_box_text.get())
+
 #this is where the user can see the result of the conversion
 output_box_text = ctk.StringVar()
 output_box = ctk.CTkEntry(window, width=130, font=("Arial", 14), textvariable=output_box_text)
+#disabling the Entry so that the user cant input anything in it
 output_box.configure(state="disabled")
 output_box.place(x=360, y=150)
 
 #this is where the user is supposed to write his unit he wants converted
 entryInt = tk.IntVar()
 input_box = ctk.CTkEntry(window, width=130, font=("Arial", 14),  textvariable = entryInt)
-# set the input type to a number
+#set the input type to number only
 input_box.configure(validate="key")
 input_box.configure(validatecommand=(input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
 input_box.place(x=175, y=150)
 
 
-#this button frame is where all the buttons are which are used for manoeuvring through the app
+#this button frame is where all the buttons are located which are used for manoeuvring through the app
 sidebar = tk.Frame(window, background="black")
 sidebar.rowconfigure(0, weight=1)
 sidebar.rowconfigure(1, weight=1)
@@ -439,7 +430,7 @@ A_select_output = customtkinter.CTkOptionMenu(window, values=["square centimeter
                                                              "acre"], width=130)
 
 #Volume
-#This is where all  the widgets regarding the Volume section are
+#This is where all the widgets regarding the Volume section are
 
 V_Label = ctk.CTkLabel(window, text="Volume", font=("Arial", 26), text_color="white", bg_color="black")
 
@@ -460,8 +451,7 @@ V_select_input = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [k
                                                              "fluid ounce [fl oz (US)]",    
                                                              "fluid ounce [fl oz (UK)]",    
                                                              "cubic centimeter [cm³]",    
-                                                             "milliliter [mL]"]
-, width=130)
+                                                             "milliliter [mL]"], width=130)
 V_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [km³]",
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
@@ -484,7 +474,8 @@ V_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
 #copy to clipboard button coming soon
 
-
+copy_button = customtkinter.CTkButton(window, text="copy", font=("Airal", 11), width=1, command=copy_to_clipboard)
+copy_button.place(x=495, y=150)
 
 
 window.mainloop()
