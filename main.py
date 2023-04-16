@@ -271,7 +271,7 @@ def A_convert():
                         }
     }
 
-    factor = A_conversion_factors.get((input_unit, output_unit), 1)
+    factor = A_conversion_factors.get(input_unit, {}).get(output_unit, 1)
     result = value * factor
 
     output_box_text.set(result)
@@ -529,7 +529,7 @@ output_box.configure(state="disabled")
 output_box.place(x=360, y=150)
 
 #this is where the user is supposed to write his unit he wants converted
-entryInt = tk.IntVar()
+entryInt = tk.DoubleVar()
 input_box = ctk.CTkEntry(window, width=130, font=("Arial", 14),  textvariable = entryInt)
 #set the input type to number only
 input_box.configure(validate="key")
