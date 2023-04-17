@@ -592,26 +592,18 @@ def show_volume_widgets():
     V_select_output.place(x=360, y=105)
     V_Label.pack(fill="both")
 
-theme_s = ctk.get_appearance_mode()
-
 def copy_to_clipboard():
     window.clipboard_clear()
     window.clipboard_append(output_box_text.get())
 
 #this is the button that will change the theme of the app
 def change_theme():
-    theme = ctk.get_appearance_mode()
-    if theme == "Dark":
+    current_theme = ctk.get_appearance_mode()
+    if current_theme == "Dark":
         ctk.set_appearance_mode("light")
-        theme_s = ctk.get_appearance_mode()
     else:
         ctk.set_appearance_mode("dark")
-        theme_s = ctk.get_appearance_mode()
-
-
-theme = ctk.get_appearance_mode()
-theme_button = ctk.CTkButton(window, textvariable=theme, command=change_theme, width=10, height=1, font=("Arial", 14), text= theme_s)
-theme_button.place(x=200, y=250)
+    theme.set(ctk.get_appearance_mode())
 
 #this is where the user can see the result of the conversion
 output_box_text = ctk.StringVar()
@@ -730,7 +722,6 @@ V_select_input = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [k
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
                                                              "cubic yard [yd³]",
-                                                                
                                                              "cubic decimeter [dm³]",    
                                                              "gallon (US)",    
                                                              "gallon (UK)",    
@@ -744,7 +735,6 @@ V_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
                                                              "cubic yard [yd³]",
-                                                                
                                                              "cubic decimeter [dm³]",    
                                                              "gallon (US)",    
                                                              "gallon (UK)",    
@@ -758,9 +748,13 @@ V_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [
 V_button = ctk.CTkButton(sidebar, text="Volume", font=("Arial", 16), command=show_volume_widgets)
 V_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
-#copy to clipboard button coming soon
-
+#copy to clipboard button
 copy_button = customtkinter.CTkButton(window, text="copy", font=("Airal", 11), width=1, command=copy_to_clipboard)
 copy_button.place(x=495, y=150)
+
+#theme button
+theme = tk.StringVar(value=ctk.get_appearance_mode())
+theme_button = ctk.CTkButton(window, textvariable=theme, command=change_theme, width=1, font=("Arial", 11))
+theme_button.place(x=495, y=105)
 
 window.mainloop()
