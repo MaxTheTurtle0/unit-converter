@@ -1,7 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
 import customtkinter
-import pyperclip
 
 window = ctk.CTk()
 window.title("Unit Converter")
@@ -441,6 +440,70 @@ def V_convert():
             "cubic centimeter [cm³]": 0.163871,
             "milliliter [mL]": 0.163871,
             "cubic inch [in³]": 1
+        },
+        "fluid ounce [fl oz (US)]": {
+            "cubic kilometer [km³]": 2.95735e-5,
+            "cubic mile [mi³]": 7.48915e-6,
+            "cubic meter [m³]": 0.0000295735,
+            "cubic yard [yd³]": 0.000037037,
+            "cubic foot [ft³]": 0.00104438,
+            "cubic decimeter [dm³]": 0.0295735,
+            "gallon (US)": 0.0078125,
+            "gallon (UK)": 0.00650521,
+            "liter [L]": 0.0295735,
+            "cubic inch [in³]": 0.578704,
+            "fluid ounce [fl oz (UK)]": 1.04084227,
+            "cubic centimeter [cm³]": 29.5735,
+            "milliliter [mL]": 29.5735,
+            "fluid ounce [fl oz (US)]": 1
+        },
+        "fluid ounce [fl oz (UK)]": {
+            "cubic kilometer [km³]": 2.84131e-5,
+            "cubic mile [mi³]": 6.79395e-6,
+            "cubic meter [m³]": 0.0000284131,
+            "cubic yard [yd³]": 0.0000353147,
+            "cubic foot [ft³]": 0.000957506,
+            "cubic decimeter [dm³]": 0.0284131,
+            "gallon (US)": 0.00625,
+            "gallon (UK)": 0.00595238,
+            "liter [L]": 0.0284131,
+            "cubic inch [in³]": 0.568261,
+            "fluid ounce [fl oz (US)]": 0.96076036,
+            "cubic centimeter [cm³]": 28.4131,
+            "milliliter [mL]": 28.4131,
+            "fluid ounce [fl oz (UK)]": 1
+        },
+        "cubic centimeter [cm³]": {
+            "cubic kilometer [km³]": 1e-15,
+            "cubic mile [mi³]": 2.39912e-14,
+            "cubic meter [m³]": 1e-6,
+            "cubic yard [yd³]": 1.30795e-6,
+            "cubic foot [ft³]": 3.53147e-5,
+            "cubic decimeter [dm³]": 0.001,
+            "gallon (US)": 0.000264172,
+            "gallon (UK)": 0.000219969,
+            "liter [L]": 0.001,
+            "cubic inch [in³]": 0.0610237,
+            "fluid ounce [fl oz (US)]": 0.033814,
+            "fluid ounce [fl oz (UK)]": 0.0351951,
+            "milliliter [mL]": 1,
+            "cubic centimeter [cm³]": 1
+        },
+        "milliliter [mL]": {
+            "cubic kilometer [km³]": 1e-15,
+            "cubic mile [mi³]": 2.39912e-14,
+            "cubic meter [m³]": 1e-6,
+            "cubic yard [yd³]": 1.30795e-6,
+            "cubic foot [ft³]": 3.53147e-5,
+            "cubic decimeter [dm³]": 0.001,
+            "gallon (US)": 0.000264172,
+            "gallon (UK)": 0.000219969,
+            "liter [L]": 0.001,
+            "cubic inch [in³]": 0.0610237,
+            "fluid ounce [fl oz (US)]": 0.033814,
+            "fluid ounce [fl oz (UK)]": 0.0351951,
+            "cubic centimeter [cm³]": 1,
+            "milliliter [mL]": 1
         }
     }
 
@@ -529,8 +592,26 @@ def show_volume_widgets():
     V_select_output.place(x=360, y=105)
     V_Label.pack(fill="both")
 
+theme_s = ctk.get_appearance_mode()
+
 def copy_to_clipboard():
-    pyperclip.copy(output_box_text.get())
+    window.clipboard_clear()
+    window.clipboard_append(output_box_text.get())
+
+#this is the button that will change the theme of the app
+def change_theme():
+    theme = ctk.get_appearance_mode()
+    if theme == "Dark":
+        ctk.set_appearance_mode("light")
+        theme_s = ctk.get_appearance_mode()
+    else:
+        ctk.set_appearance_mode("dark")
+        theme_s = ctk.get_appearance_mode()
+
+
+theme = ctk.get_appearance_mode()
+theme_button = ctk.CTkButton(window, textvariable=theme, command=change_theme, width=10, height=1, font=("Arial", 14), text= theme_s)
+theme_button.place(x=200, y=250)
 
 #this is where the user can see the result of the conversion
 output_box_text = ctk.StringVar()
@@ -549,7 +630,7 @@ input_box.place(x=175, y=150)
 
 
 #this button frame is where all the buttons are located which are used for manoeuvring through the app
-sidebar = tk.Frame(window, background="black")
+sidebar = ctk.CTkFrame(window, fg_color=("darkgrey","black"), corner_radius=0)
 sidebar.rowconfigure(0, weight=1)
 sidebar.rowconfigure(1, weight=1)
 sidebar.rowconfigure(2, weight=1)
@@ -560,7 +641,7 @@ sidebar.pack(side="left", fill="y")
 #Temperature
 #This is where all the widgets regarding the Temperature section are
 
-T_Label = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color="white", bg_color="black")
+T_Label = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black") )
 T_Label.pack(fill="both")
 
 T_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=T_convert)
@@ -681,6 +762,5 @@ V_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
 copy_button = customtkinter.CTkButton(window, text="copy", font=("Airal", 11), width=1, command=copy_to_clipboard)
 copy_button.place(x=495, y=150)
-
 
 window.mainloop()
