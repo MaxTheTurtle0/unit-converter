@@ -8,12 +8,12 @@ window.geometry("540x300")
 window.resizable(False, False)
 ctk.set_appearance_mode("dark")
 
-def T_convert():
-    input_unit = T_select_input.get()
-    output_unit = T_select_output.get()
-    value = entryInt.get()
+def t_convert():
+    input_unit = t_select_input.get()
+    output_unit = t_select_output.get()
+    value = entry_int.get()
 
-    T_conversion_factors = {
+    t_conversion_factors = {
         "Celsius [°C]": {"Fahrenheit [°F]": lambda x: x * 1.8 + 32, "kelvin [K]": lambda x: x + 273.15},
         "Fahrenheit [°F]": {"Celsius [°C]": lambda x: (x - 32) / 1.8, "kelvin [K]": lambda x: (x + 459.67) * 5/9},
         "kelvin [K]": {"Celsius [°C]": lambda x: x - 273.15, "Fahrenheit [°F]": lambda x: x * 9/5 - 459.67},
@@ -22,16 +22,16 @@ def T_convert():
     if input_unit == output_unit:
         result = value
     else:
-        result = T_conversion_factors[input_unit][output_unit](value)
+        result = t_conversion_factors[input_unit][output_unit](value)
 
     output_box_text.set(result)
 
-def L_convert():
-    input_unit = L_select_input.get()
-    output_unit = L_select_output.get()
-    value = entryInt.get()
+def l_convert():
+    input_unit = l_select_input.get()
+    output_unit = l_select_output.get()
+    value = entry_int.get()
 
-    L_conversion_factors = {
+    l_conversion_factors = {
         "centimeter [cm]": {
             "decimeter [dm]": 0.1, 
             "meter [m]": 0.01, 
@@ -114,17 +114,17 @@ def L_convert():
         }
     }
 
-    factor = L_conversion_factors.get(input_unit, {}).get(output_unit, 1)
+    factor = l_conversion_factors.get(input_unit, {}).get(output_unit, 1)
     result = value * factor
 
     output_box_text.set(result)
 
-def A_convert():
-    input_unit = A_select_input.get()
-    output_unit = A_select_output.get()
-    value = entryInt.get()
+def a_convert():
+    input_unit = a_select_input.get()
+    output_unit = a_select_output.get()
+    value = entry_int.get()
 
-    A_conversion_factors = {
+    a_conversion_factors = {
                         "square centimeter [cm²]": {
                             "square centimeter [cm²]": 1,
                             "square decimetre [dm²]": 0.01,
@@ -270,17 +270,17 @@ def A_convert():
                         }
     }
 
-    factor = A_conversion_factors.get(input_unit, {}).get(output_unit, 1)
+    factor = a_conversion_factors.get(input_unit, {}).get(output_unit, 1)
     result = value * factor
 
     output_box_text.set(result)
 
-def V_convert():
-    input_unit = V_select_input.get()
-    output_unit = V_select_output.get()
-    value = entryInt.get()
+def v_convert():
+    input_unit = v_select_input.get()
+    output_unit = v_select_output.get()
+    value = entry_int.get()
 
-    V_conversion_factors = {
+    v_conversion_factors = {
         "cubic kilometer [km³]": {
             "cubic mile [mi³]": 0.239912,
             "cubic meter [m³]": 1e+9,
@@ -507,90 +507,90 @@ def V_convert():
         }
     }
 
-    factor = V_conversion_factors.get(input_unit, {}).get(output_unit, 1)
+    factor = v_conversion_factors.get(input_unit, {}).get(output_unit, 1)
     result = value * factor
 
     output_box_text.set(result)
 
 def box_reset():
     output_box_text.set("")
-    entryInt.set(0)
+    entry_int.set(0)
 
 def show_length_widgets():
     box_reset()
-    T_convert_button.place_forget()
-    T_select_input.place_forget()
-    T_select_output.place_forget()
-    T_Label.pack_forget()
-    A_select_input.place_forget()
-    A_select_output.place_forget()
-    A_Label.pack_forget()
-    A_convert_button.place_forget()
-    V_select_input.place_forget()
-    V_select_output.place_forget()
-    V_Label.pack_forget()
-    V_convert_button.place_forget()
-    L_select_input.place(x=175, y=105)
-    L_select_output.place(x=360, y=105)
-    L_Label.pack(fill="both")
-    L_convert_button.place(x=262, y=195)
+    t_convert_button.place_forget()
+    t_select_input.place_forget()
+    t_select_output.place_forget()
+    t_label.pack_forget()
+    a_select_input.place_forget()
+    a_select_output.place_forget()
+    a_label.pack_forget()
+    a_convert_button.place_forget()
+    a_select_input.place_forget()
+    a_select_output.place_forget()
+    v_label.pack_forget()
+    v_convert_button.place_forget()
+    l_select_input.place(x=175, y=105)
+    l_select_output.place(x=360, y=105)
+    l_label.pack(fill="both")
+    l_convert_button.place(x=262, y=195)
 
 def show_temperature_widgets():
     box_reset()
-    L_select_input.place_forget()
-    L_select_output.place_forget()
-    L_Label.pack_forget()
-    L_convert_button.place_forget()
-    A_select_input.place_forget()
-    A_select_output.place_forget()
-    A_Label.pack_forget()
-    A_convert_button.place_forget()
-    V_select_input.place_forget()
-    V_select_output.place_forget()
-    V_Label.pack_forget()
-    V_convert_button.place_forget()
-    T_convert_button.place(x=262, y=195)
-    T_select_input.place(x=175, y=105)
-    T_select_output.place(x=360, y=105)
-    T_Label.pack(fill="both")
+    l_select_input.place_forget()
+    l_select_output.place_forget()
+    l_label.pack_forget()
+    l_convert_button.place_forget()
+    a_select_input.place_forget()
+    a_select_output.place_forget()
+    a_label.pack_forget()
+    a_convert_button.place_forget()
+    v_select_input.place_forget()
+    v_select_output.place_forget()
+    v_label.pack_forget()
+    v_convert_button.place_forget()
+    t_convert_button.place(x=262, y=195)
+    t_select_input.place(x=175, y=105)
+    t_select_output.place(x=360, y=105)
+    t_label.pack(fill="both")
 
 def show_area_widgets():
     box_reset()
-    T_convert_button.place_forget()
-    T_select_input.place_forget()
-    T_select_output.place_forget()
-    T_Label.pack_forget()
-    L_select_input.place_forget()
-    L_select_output.place_forget()
-    L_Label.pack_forget()
-    L_convert_button.place_forget()
-    V_select_input.place_forget()
-    V_select_output.place_forget()
-    V_Label.pack_forget()
-    V_convert_button.place_forget()
-    A_convert_button.place(x=262, y=195)
-    A_select_input.place(x=175, y=105)
-    A_select_output.place(x=360, y=105)
-    A_Label.pack(fill="both")
+    t_convert_button.place_forget()
+    t_select_input.place_forget()
+    t_select_output.place_forget()
+    t_label.pack_forget()
+    l_select_input.place_forget()
+    l_select_output.place_forget()
+    l_label.pack_forget()
+    l_convert_button.place_forget()
+    v_select_input.place_forget()
+    v_select_output.place_forget()
+    v_label.pack_forget()
+    v_convert_button.place_forget()
+    a_convert_button.place(x=262, y=195)
+    a_select_input.place(x=175, y=105)
+    a_select_output.place(x=360, y=105)
+    a_label.pack(fill="both")
 
 def show_volume_widgets():
     box_reset()
-    T_convert_button.place_forget()
-    T_select_input.place_forget()
-    T_select_output.place_forget()
-    T_Label.pack_forget()
-    L_select_input.place_forget()
-    L_select_output.place_forget()
-    L_Label.pack_forget()
-    L_convert_button.place_forget()
-    A_select_input.place_forget()
-    A_select_output.place_forget()
-    A_Label.pack_forget()
-    A_convert_button.place_forget()
-    V_convert_button.place(x=262, y=195)
-    V_select_input.place(x=175, y=105)
-    V_select_output.place(x=360, y=105)
-    V_Label.pack(fill="both")
+    t_convert_button.place_forget()
+    t_select_input.place_forget()
+    t_select_output.place_forget()
+    t_label.pack_forget()
+    l_select_input.place_forget()
+    l_select_output.place_forget()
+    l_label.pack_forget()
+    l_convert_button.place_forget()
+    a_select_input.place_forget()
+    a_select_output.place_forget()
+    a_label.pack_forget()
+    a_convert_button.place_forget()
+    v_convert_button.place(x=262, y=195)
+    v_select_input.place(x=175, y=105)
+    v_select_output.place(x=360, y=105)
+    v_label.pack(fill="both")
 
 def copy_to_clipboard():
     window.clipboard_clear()
@@ -613,8 +613,8 @@ output_box.configure(state="disabled")
 output_box.place(x=360, y=150)
 
 #this is where the user is supposed to write his unit he wants converted
-entryInt = tk.DoubleVar()
-input_box = ctk.CTkEntry(window, width=130, font=("Arial", 14),  textvariable = entryInt)
+entry_int = tk.DoubleVar()
+input_box = ctk.CTkEntry(window, width=130, font=("Arial", 14),  textvariable = entry_int)
 #set the input type to number only
 input_box.configure(validate="key")
 input_box.configure(validatecommand=(input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
@@ -633,35 +633,35 @@ sidebar.pack(side="left", fill="y")
 #Temperature
 #This is where all the widgets regarding the Temperature section are
 
-T_Label = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black") )
-T_Label.pack(fill="both")
+t_label = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black") )
+t_label.pack(fill="both")
 
-T_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=T_convert)
-T_convert_button.place(x=262, y=195)
+t_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=t_convert)
+t_convert_button.place(x=262, y=195)
 
-T_button = ctk.CTkButton(sidebar, text="Temperature", font=("Arial", 16), command=show_temperature_widgets)
-T_button.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
+t_button = ctk.CTkButton(sidebar, text="Temperature", font=("Arial", 16), command=show_temperature_widgets)
+t_button.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
 
-T_select_input = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
+t_select_input = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
                                                              "Fahrenheit [°F]", 
                                                              "kelvin [K]"], width=130)
-T_select_input.place(x=175, y=105)
-T_select_output = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
+t_select_input.place(x=175, y=105)
+t_select_output = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
                                                               "Fahrenheit [°F]", 
                                                               "kelvin [K]"], width=130)
-T_select_output.place(x=360, y=105)
+t_select_output.place(x=360, y=105)
 
 #Length
 #This is where all the widgets regarding the Length section are
 
-L_Label = ctk.CTkLabel(window, text="Length", font=("Arial", 26), text_color="white", bg_color="black")
+l_label = ctk.CTkLabel(window, text="Length", font=("Arial", 26), text_color="white", bg_color="black")
 
-L_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=L_convert)
+l_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=l_convert)
 
-L_button = ctk.CTkButton(sidebar, text="Length", font=("Arial", 16), command=show_length_widgets)
-L_button.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
+l_button = ctk.CTkButton(sidebar, text="Length", font=("Arial", 16), command=show_length_widgets)
+l_button.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
-L_select_input = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
+l_select_input = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
                                                              "decimeter [dm]", 
                                                              "meter [m]", 
                                                              "kilometer [km]", 
@@ -669,7 +669,7 @@ L_select_input = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]",
                                                              "foot [ft]", 
                                                              "yard [yd]", 
                                                              "mile [mi]"], width=130)
-L_select_output = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
+l_select_output = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
                                                               "decimeter [dm]", 
                                                               "meter [m]", 
                                                               "kilometer [km]", 
@@ -681,14 +681,14 @@ L_select_output = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]",
 #Area
 #This is where all the widgets regarding the Area section are
 
-A_Label = ctk.CTkLabel(window, text="Area", font=("Arial", 26), text_color="white", bg_color="black")
+a_label = ctk.CTkLabel(window, text="Area", font=("Arial", 26), text_color="white", bg_color="black")
 
-A_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=A_convert)
+a_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=a_convert)
 
-A_button = ctk.CTkButton(sidebar, text="Area", font=("Arial", 16), command=show_area_widgets)
-A_button.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
+a_button = ctk.CTkButton(sidebar, text="Area", font=("Arial", 16), command=show_area_widgets)
+a_button.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
-A_select_input = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
+a_select_input = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
                                                              "square decimetre [dm²]", 
                                                              "square meter [m²]", 
                                                              "square decametre [dam²]",
@@ -699,7 +699,7 @@ A_select_input = customtkinter.CTkOptionMenu(window, values=["square centimeter 
                                                              "square yard [yd²]", 
                                                              "square mile [mi²]",
                                                              "acre"], width=130)
-A_select_output = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
+a_select_output = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
                                                              "square decimetre [dm²]", 
                                                              "square meter [m²]", 
                                                              "square decametre [dam²]",
@@ -714,11 +714,11 @@ A_select_output = customtkinter.CTkOptionMenu(window, values=["square centimeter
 #Volume
 #This is where all the widgets regarding the Volume section are
 
-V_Label = ctk.CTkLabel(window, text="Volume", font=("Arial", 26), text_color="white", bg_color="black")
+v_label = ctk.CTkLabel(window, text="Volume", font=("Arial", 26), text_color="white", bg_color="black")
 
-V_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=V_convert)
+v_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=v_convert)
 
-V_select_input = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [km³]",
+v_select_input = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [km³]",
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
                                                              "cubic yard [yd³]",
@@ -731,7 +731,7 @@ V_select_input = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [k
                                                              "fluid ounce [fl oz (UK)]",    
                                                              "cubic centimeter [cm³]",    
                                                              "milliliter [mL]"], width=130)
-V_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [km³]",
+v_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [km³]",
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
                                                              "cubic yard [yd³]",
@@ -745,8 +745,8 @@ V_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [
                                                              "cubic centimeter [cm³]",    
                                                              "milliliter [mL]"], width=130)
 
-V_button = ctk.CTkButton(sidebar, text="Volume", font=("Arial", 16), command=show_volume_widgets)
-V_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
+v_button = ctk.CTkButton(sidebar, text="Volume", font=("Arial", 16), command=show_volume_widgets)
+v_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
 #copy to clipboard button
 copy_button = customtkinter.CTkButton(window, text="copy", font=("Airal", 11), width=1, command=copy_to_clipboard)
