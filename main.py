@@ -8,6 +8,7 @@ window.geometry("540x300")
 window.resizable(False, False)
 ctk.set_appearance_mode("dark")
 
+# these functions are used to convert the input values to the output values
 def t_convert():
     input_unit = t_select_input.get()
     output_unit = t_select_output.get()
@@ -516,6 +517,7 @@ def box_reset():
     output_box_text.set("")
     entry_int.set(0)
 
+#these functions are used to show the correct widgets for each conversion type
 def show_length_widgets():
     box_reset()
     t_convert_button.place_forget()
