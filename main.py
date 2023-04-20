@@ -8,6 +8,17 @@ window.geometry("540x300")
 window.resizable(False, False)
 ctk.set_appearance_mode("dark")
 
+# this function allows the user to just press enter to convert the values
+def current_convert(self):
+    if t_convert_button.winfo_manager() == "place":
+        t_convert()
+    elif l_convert_button.winfo_manager() == "place":
+        l_convert()
+    elif a_convert_button.winfo_manager() == "place":
+        a_convert()
+    else:
+        v_convert()
+
 # these functions are used to convert the input values to the output values
 def t_convert():
     input_unit = t_select_input.get()
@@ -617,6 +628,7 @@ output_box.place(x=360, y=150)
 #this is where the user is supposed to write his unit he wants converted
 entry_int = tk.DoubleVar()
 input_box = ctk.CTkEntry(window, width=130, font=("Arial", 14),  textvariable = entry_int)
+input_box.bind("<Return>", current_convert)
 #set the input type to number only
 input_box.configure(validate="key")
 input_box.configure(validatecommand=(input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
@@ -635,32 +647,32 @@ sidebar.pack(side="left", fill="y")
 #Temperature
 #This is where all the widgets regarding the Temperature section are
 
-t_label = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black") )
+t_label = ctk.CTkLabel(window, text="Temperature", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black"))
 t_label.pack(fill="both")
 
-t_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=t_convert)
+t_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=t_convert, text_color=("black", "white"))
 t_convert_button.place(x=262, y=195)
 
-t_button = ctk.CTkButton(sidebar, text="Temperature", font=("Arial", 16), command=show_temperature_widgets)
+t_button = ctk.CTkButton(sidebar, text="Temperature", font=("Arial", 16), command=show_temperature_widgets, text_color=("black", "white"))
 t_button.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
 
 t_select_input = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
                                                              "Fahrenheit [°F]", 
-                                                             "kelvin [K]"], width=130)
+                                                             "kelvin [K]"], width=130, text_color=("black", "white"))
 t_select_input.place(x=175, y=105)
 t_select_output = customtkinter.CTkOptionMenu(window, values=["Celsius [°C]", 
                                                               "Fahrenheit [°F]", 
-                                                              "kelvin [K]"], width=130)
+                                                              "kelvin [K]"], width=130, text_color=("black", "white"))
 t_select_output.place(x=360, y=105)
 
 #Length
 #This is where all the widgets regarding the Length section are
 
-l_label = ctk.CTkLabel(window, text="Length", font=("Arial", 26), text_color="white", bg_color="black")
+l_label = ctk.CTkLabel(window, text="Length", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black"))
 
-l_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=l_convert)
+l_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=l_convert, text_color=("black", "white"))
 
-l_button = ctk.CTkButton(sidebar, text="Length", font=("Arial", 16), command=show_length_widgets)
+l_button = ctk.CTkButton(sidebar, text="Length", font=("Arial", 16), command=show_length_widgets, text_color=("black", "white"))
 l_button.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
 l_select_input = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
@@ -670,7 +682,7 @@ l_select_input = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]",
                                                              "inch [in]", 
                                                              "foot [ft]", 
                                                              "yard [yd]", 
-                                                             "mile [mi]"], width=130)
+                                                             "mile [mi]"], width=130, text_color=("black", "white"))
 l_select_output = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]", 
                                                               "decimeter [dm]", 
                                                               "meter [m]", 
@@ -678,16 +690,16 @@ l_select_output = customtkinter.CTkOptionMenu(window, values=["centimeter [cm]",
                                                               "inch [in]", 
                                                               "foot [ft]", 
                                                               "yard [yd]", 
-                                                              "mile [mi]"], width=130)
+                                                              "mile [mi]"], width=130, text_color=("black", "white"))
 
 #Area
 #This is where all the widgets regarding the Area section are
 
-a_label = ctk.CTkLabel(window, text="Area", font=("Arial", 26), text_color="white", bg_color="black")
+a_label = ctk.CTkLabel(window, text="Area", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black"))
 
-a_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=a_convert)
+a_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=a_convert, text_color=("black", "white"))
 
-a_button = ctk.CTkButton(sidebar, text="Area", font=("Arial", 16), command=show_area_widgets)
+a_button = ctk.CTkButton(sidebar, text="Area", font=("Arial", 16), command=show_area_widgets, text_color=("black", "white"))
 a_button.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
 a_select_input = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
@@ -700,7 +712,7 @@ a_select_input = customtkinter.CTkOptionMenu(window, values=["square centimeter 
                                                              "square foot [ft²]", 
                                                              "square yard [yd²]", 
                                                              "square mile [mi²]",
-                                                             "acre"], width=130)
+                                                             "acre"], width=130, text_color=("black", "white"))
 a_select_output = customtkinter.CTkOptionMenu(window, values=["square centimeter [cm²]", 
                                                              "square decimetre [dm²]", 
                                                              "square meter [m²]", 
@@ -711,14 +723,14 @@ a_select_output = customtkinter.CTkOptionMenu(window, values=["square centimeter
                                                              "square foot [ft²]", 
                                                              "square yard [yd²]", 
                                                              "square mile [mi²]",
-                                                             "acre"], width=130)
+                                                             "acre"], width=130, text_color=("black", "white"))
 
 #Volume
 #This is where all the widgets regarding the Volume section are
 
-v_label = ctk.CTkLabel(window, text="Volume", font=("Arial", 26), text_color="white", bg_color="black")
+v_label = ctk.CTkLabel(window, text="Volume", font=("Arial", 26), text_color=("black", "white"), bg_color=("darkgrey", "black"))
 
-v_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=v_convert)
+v_convert_button = ctk.CTkButton(window, text="Convert", font=("Arial", 16), command=v_convert, text_color=("black", "white"))
 
 v_select_input = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [km³]",
                                                              "cubic mile [mi³]",
@@ -732,7 +744,7 @@ v_select_input = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [k
                                                              "fluid ounce [fl oz (US)]",    
                                                              "fluid ounce [fl oz (UK)]",    
                                                              "cubic centimeter [cm³]",    
-                                                             "milliliter [mL]"], width=130)
+                                                             "milliliter [mL]"], width=130, text_color=("black", "white"))
 v_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [km³]",
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
@@ -745,18 +757,18 @@ v_select_output = customtkinter.CTkOptionMenu(window, values=["cubic kilometer [
                                                              "fluid ounce [fl oz (US)]",    
                                                              "fluid ounce [fl oz (UK)]",    
                                                              "cubic centimeter [cm³]",    
-                                                             "milliliter [mL]"], width=130)
+                                                             "milliliter [mL]"], width=130, text_color=("black", "white"))
 
-v_button = ctk.CTkButton(sidebar, text="Volume", font=("Arial", 16), command=show_volume_widgets)
+v_button = ctk.CTkButton(sidebar, text="Volume", font=("Arial", 16), command=show_volume_widgets, text_color=("black", "white"))
 v_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
 #copy to clipboard button
-copy_button = customtkinter.CTkButton(window, text="copy", font=("Airal", 11), width=1, command=copy_to_clipboard)
+copy_button = customtkinter.CTkButton(window, text="copy", font=("Airal", 11), width=1, command=copy_to_clipboard, text_color=("black", "white"))
 copy_button.place(x=495, y=150)
 
 #theme button
 theme = tk.StringVar(value=ctk.get_appearance_mode())
-theme_button = ctk.CTkButton(window, textvariable=theme, command=change_theme, width=1, font=("Arial", 11))
-theme_button.place(x=495, y=105)
+theme_button = ctk.CTkButton(window, textvariable=theme, command=change_theme, width=1, font=("Arial", 11), text_color=("black", "white"))
+theme_button.place(x=495, y=195)
 
 window.mainloop()
