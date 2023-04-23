@@ -3,8 +3,8 @@ import customtkinter as ctk
 import customtkinter
 from PIL import Image
 
-my_image = customtkinter.CTkImage(light_image = Image.open("convert_light.png"),
-                                  dark_image = Image.open("convert_dark.png"),
+my_image = customtkinter.CTkImage(light_image = Image.open("convert.png"),
+                                  dark_image = Image.open("convert.png"),
                                   size = (20, 20))
 window = ctk.CTk()
 window.title("Unit Converter")
@@ -626,14 +626,20 @@ def change_theme():
 
 #this is where the user can see the result of the conversion
 output_box_text = ctk.StringVar()
-output_box = ctk.CTkEntry(window, width = 130, font = ("Arial", 14), textvariable = output_box_text)
+output_box = ctk.CTkEntry(window, 
+                          width = 130, 
+                          font = ("Arial", 14),
+                         textvariable = output_box_text)
 #disabling the Entry so that the user cant input anything in it
 output_box.configure(state ="disabled")
 output_box.place(x = 360, y = 150)
 
 #this is where the user is supposed to write his unit he wants converted
 entry_int = tk.DoubleVar()
-input_box = ctk.CTkEntry(window, width = 130, font = ("Arial", 14),  textvariable = entry_int)
+input_box = ctk.CTkEntry(window, 
+                         width = 130, 
+                         font = ("Arial", 14),  
+                         textvariable = entry_int)
 input_box.bind("<Return>", current_convert)
 #set the input type to number only
 input_box.configure(validate="key")
@@ -642,7 +648,7 @@ input_box.place(x=175, y=150)
 
 
 # this is the sidebar where the user can choose the conversion type
-sidebar = ctk.CTkFrame(window, fg_color=("lightgrey","black"), corner_radius=0)
+sidebar = ctk.CTkFrame(window, fg_color = ("lightgrey","black"), corner_radius=0)
 sidebar.rowconfigure(0, weight = 1)
 sidebar.rowconfigure(1, weight = 1)
 sidebar.rowconfigure(2, weight = 1)
@@ -653,62 +659,143 @@ sidebar.pack(side="left", fill = "y")
 #Temperature
 #This is where all the widgets regarding the Temperature section are
 
-t_label = ctk.CTkLabel(window, text = "Temperature", font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), text_color = ("black", "white"), bg_color = ("lightgrey", "black"))
+t_label = ctk.CTkLabel(window, 
+                       text = "Temperature", 
+                       font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), 
+                       text_color = ("black", "white"), bg_color = ("lightgrey", "black"))
 t_label.pack(fill="both")
 
-t_convert_button = ctk.CTkButton(window, text = "", image = my_image, font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = t_convert, text_color = ("black", "white"), width=21, height=21)
+t_convert_button = ctk.CTkButton(window, 
+                                 text = "", 
+                                 image = my_image, 
+                                 font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                                 command = t_convert, text_color="white", 
+                                 width=21, height=21, 
+                                 fg_color = ("black", "#1F6AA5"), 
+                                 hover_color=("darkgrey", "#144870"))
 t_convert_button.place(x = 315, y = 150)
 
-t_button = ctk.CTkButton(sidebar, text = "Temperature", font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = show_temperature_widgets, text_color = ("black", "white"))
+t_button = ctk.CTkButton(sidebar, 
+                         text = "Temperature", 
+                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                         command = show_temperature_widgets, 
+                         text_color="white", 
+                         fg_color = ("black", "#1F6AA5"), 
+                         hover_color=("darkgrey", "#144870"))
 t_button.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "ew")
 
-t_select_input = customtkinter.CTkOptionMenu(window, values = ["Celsius [°C]", 
+t_select_input = customtkinter.CTkOptionMenu(window, 
+                                             values = ["Celsius [°C]", 
                                                              "Fahrenheit [°F]", 
-                                                             "kelvin [K]"], width = 130, text_color = ("black", "white"))
+                                                             "kelvin [K]"], 
+                                                             width = 130, 
+                                                             text_color="white", 
+                                                             fg_color = ("black", "#1F6AA5"), 
+                                                             button_color = ("black","#144870"),
+                                                             button_hover_color = ("darkgrey", "#144870"))
 t_select_input.place(x = 175, y = 105)
-t_select_output = customtkinter.CTkOptionMenu(window, values = ["Celsius [°C]", 
+t_select_output = customtkinter.CTkOptionMenu(window, 
+                                              values = ["Celsius [°C]", 
                                                               "Fahrenheit [°F]", 
-                                                              "kelvin [K]"], width = 130, text_color = ("black", "white"))
+                                                              "kelvin [K]"], 
+                                                              width = 130, 
+                                                              text_color="white", 
+                                                              fg_color = ("black", "#1F6AA5"), 
+                                                              button_color = ("black","#144870"),
+                                                              button_hover_color = ("darkgrey", "#144870"))
 t_select_output.place(x = 360, y = 105)
 
 #Length
 #This is where all the widgets regarding the Length section are
 
-l_label = ctk.CTkLabel(window, text = "Length", font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), text_color = ("black", "white"), bg_color = ("lightgrey", "black"))
+l_label = ctk.CTkLabel(window, 
+                       text = "Length", 
+                       font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), 
+                       text_color = ("black", "white"), 
+                       bg_color = ("lightgrey", "black"))
 
-l_convert_button = ctk.CTkButton(window, text = "", image = my_image, font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = l_convert, text_color = ("black", "white"), width=21, height=21)
+l_convert_button = ctk.CTkButton(window, 
+                                 text = "", 
+                                 image = my_image, 
+                                 font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                                 command = l_convert, 
+                                 text_color="white", 
+                                 width=21, 
+                                 height=21, 
+                                 fg_color = ("black", "#1F6AA5"), 
+                                 hover_color=("darkgrey", "#144870"))
 
-l_button = ctk.CTkButton(sidebar, text = "Length", font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = show_length_widgets, text_color = ("black", "white"))
+l_button = ctk.CTkButton(sidebar, 
+                         text = 
+                         "Length", 
+                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                         command = show_length_widgets, 
+                         text_color="white", 
+                         fg_color = ("black", "#1F6AA5"), 
+                         hover_color=("darkgrey", "#144870"))
 l_button.grid(row = 1, column = 0, padx = 10, pady = 10, sticky = "ew")
 
-l_select_input = customtkinter.CTkOptionMenu(window, values = ["centimeter [cm]", 
+l_select_input = customtkinter.CTkOptionMenu(window, 
+                                             values = ["centimeter [cm]", 
                                                              "decimeter [dm]", 
                                                              "meter [m]", 
                                                              "kilometer [km]", 
                                                              "inch [in]", 
                                                              "foot [ft]", 
                                                              "yard [yd]", 
-                                                             "mile [mi]"], width = 130, text_color = ("black", "white"))
-l_select_output = customtkinter.CTkOptionMenu(window, values = ["centimeter [cm]", 
+                                                             "mile [mi]"], 
+                                                             width = 130, 
+                                                             text_color="white", 
+                                                             fg_color = ("black", "#1F6AA5"),
+                                                             button_color = ("black","#144870"),
+                                                             button_hover_color = ("darkgrey", "#144870"))
+l_select_output = customtkinter.CTkOptionMenu(window, 
+                                              values = ["centimeter [cm]", 
                                                               "decimeter [dm]", 
                                                               "meter [m]", 
                                                               "kilometer [km]", 
                                                               "inch [in]", 
                                                               "foot [ft]", 
                                                               "yard [yd]", 
-                                                              "mile [mi]"], width = 130, text_color = ("black", "white"))
+                                                              "mile [mi]"], 
+                                                              width = 130, 
+                                                              text_color="white", 
+                                                              fg_color = ("black", "#1F6AA5"),
+                                                              button_color = ("black","#144870"),
+                                                              button_hover_color = ("darkgrey", "#144870"))
 
 #Area
 #This is where all the widgets regarding the Area section are
 
-a_label = ctk.CTkLabel(window, text = "Area", font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), text_color = ("black", "white"), bg_color = ("lightgrey", "black"))
+a_label = ctk.CTkLabel(window, 
+                       text = 
+                       "Area", 
+                       font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), 
+                       text_color = ("black", "white"), 
+                       bg_color = ("lightgrey", "black"))
 
-a_convert_button = ctk.CTkButton(window, text = "", image = my_image, font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = a_convert, text_color = ("black", "white"), width=21, height=21)
+a_convert_button = ctk.CTkButton(window, 
+                                 text = "", 
+                                 image = my_image, 
+                                 font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                                 command = a_convert, 
+                                 text_color="white", 
+                                 width=21, 
+                                 height=21, 
+                                 fg_color = ("black", "#1F6AA5"), 
+                                 hover_color=("darkgrey", "#144870"))
 
-a_button = ctk.CTkButton(sidebar, text = "Area", font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = show_area_widgets, text_color = ("black", "white"))
+a_button = ctk.CTkButton(sidebar, 
+                         text = "Area", 
+                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                         command = show_area_widgets, 
+                         text_color="white", 
+                         fg_color = ("black", "#1F6AA5"), 
+                         hover_color=("darkgrey", "#144870"))
 a_button.grid(row = 2, column = 0, padx = 10, pady = 10, sticky = "ew")
 
-a_select_input = customtkinter.CTkOptionMenu(window, values = ["square centimeter [cm²]", 
+a_select_input = customtkinter.CTkOptionMenu(window, 
+                                             values = ["square centimeter [cm²]", 
                                                              "square decimetre [dm²]", 
                                                              "square meter [m²]", 
                                                              "square decametre [dam²]",
@@ -718,8 +805,13 @@ a_select_input = customtkinter.CTkOptionMenu(window, values = ["square centimete
                                                              "square foot [ft²]", 
                                                              "square yard [yd²]", 
                                                              "square mile [mi²]",
-                                                             "acre"], width = 130, text_color = ("black", "white"))
-a_select_output = customtkinter.CTkOptionMenu(window, values = ["square centimeter [cm²]", 
+                                                             "acre"], width = 130, 
+                                                             text_color="white", 
+                                                             fg_color = ("black", "#1F6AA5"),
+                                                             button_color = ("black","#144870"),
+                                                             button_hover_color = ("darkgrey", "#144870"))
+a_select_output = customtkinter.CTkOptionMenu(window, 
+                                              values = ["square centimeter [cm²]", 
                                                              "square decimetre [dm²]", 
                                                              "square meter [m²]", 
                                                              "square decametre [dam²]",
@@ -729,16 +821,33 @@ a_select_output = customtkinter.CTkOptionMenu(window, values = ["square centimet
                                                              "square foot [ft²]", 
                                                              "square yard [yd²]", 
                                                              "square mile [mi²]",
-                                                             "acre"], width = 130, text_color = ("black", "white"))
+                                                             "acre"], width = 130, 
+                                                             text_color="white", 
+                                                             fg_color = ("black", "#1F6AA5"),
+                                                             button_color = ("black","#144870"),
+                                                             button_hover_color = ("darkgrey", "#144870"))
 
 #Volume
 #This is where all the widgets regarding the Volume section are
 
-v_label = ctk.CTkLabel(window, text = "Volume", font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), text_color = ("black", "white"), bg_color = ("lightgrey", "black"))
+v_label = ctk.CTkLabel(window, 
+                       text = "Volume", 
+                       font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"), 
+                       text_color = ("black", "white"), 
+                       bg_color = ("lightgrey", "black"))
 
-v_convert_button = ctk.CTkButton(window, text = "", image = my_image, font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = v_convert, text_color = ("black", "white"), width=21, height=21)
+v_convert_button = ctk.CTkButton(window, text = "", 
+                                 image = my_image, 
+                                 font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                                 command = v_convert, 
+                                 text_color="white", 
+                                 width=21, 
+                                 height=21, 
+                                 fg_color = ("black", "#1F6AA5"), 
+                                 hover_color=("darkgrey", "#144870"))
 
-v_select_input = customtkinter.CTkOptionMenu(window, values = ["cubic kilometer [km³]",
+v_select_input = customtkinter.CTkOptionMenu(window, 
+                                             values = ["cubic kilometer [km³]",
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
                                                              "cubic yard [yd³]",
@@ -750,8 +859,14 @@ v_select_input = customtkinter.CTkOptionMenu(window, values = ["cubic kilometer 
                                                              "fluid ounce [fl oz (US)]",    
                                                              "fluid ounce [fl oz (UK)]",    
                                                              "cubic centimeter [cm³]",    
-                                                             "milliliter [mL]"], width = 130, text_color = ("black", "white"))
-v_select_output = customtkinter.CTkOptionMenu(window, values = ["cubic kilometer [km³]",
+                                                             "milliliter [mL]"], 
+                                                             width = 130, 
+                                                             text_color="white", 
+                                                             fg_color = ("black", "#1F6AA5"),
+                                                             button_color = ("black","#144870"),
+                                                             button_hover_color = ("darkgrey", "#144870"))
+v_select_output = customtkinter.CTkOptionMenu(window, 
+                                              values = ["cubic kilometer [km³]",
                                                              "cubic mile [mi³]",
                                                              "cubic meter [m³]",
                                                              "cubic yard [yd³]",
@@ -763,18 +878,43 @@ v_select_output = customtkinter.CTkOptionMenu(window, values = ["cubic kilometer
                                                              "fluid ounce [fl oz (US)]",    
                                                              "fluid ounce [fl oz (UK)]",    
                                                              "cubic centimeter [cm³]",    
-                                                             "milliliter [mL]"], width = 130, text_color = ("black", "white"))
+                                                             "milliliter [mL]"], 
+                                                             width = 130, 
+                                                             text_color="white", 
+                                                             fg_color = ("black", "#1F6AA5"),
+                                                             button_color = ("black","#144870"),
+                                                             button_hover_color = ("darkgrey", "#144870"))
 
-v_button = ctk.CTkButton(sidebar, text = "Volume", font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), command = show_volume_widgets, text_color = ("black", "white"))
+v_button = ctk.CTkButton(sidebar, 
+                         text = "Volume", 
+                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
+                         command = show_volume_widgets, 
+                         text_color="white", 
+                         fg_color = ("black", "#1F6AA5"), 
+                         hover_color=("darkgrey", "#144870"))
 v_button.grid(row = 3, column = 0, padx = 10, pady = 10, sticky = "ew")
 
 #copy to clipboard button
-copy_button = customtkinter.CTkButton(window, text = "copy", font = customtkinter.CTkFont(family = "Arial", size = 11, weight="bold"), width = 1, command = copy_to_clipboard, text_color = ("black", "white"))
+copy_button = customtkinter.CTkButton(window, 
+                                      text = "copy", 
+                                      font = customtkinter.CTkFont(family = "Arial", size = 11, weight="bold"), 
+                                      width = 1, 
+                                      command = copy_to_clipboard, 
+                                      text_color="white",  
+                                      fg_color = ("black", "#1F6AA5"), 
+                                      hover_color=("darkgrey", "#144870"))
 copy_button.place(x = 495, y = 150)
 
 #theme button
 theme = tk.StringVar(value = ctk.get_appearance_mode())
-theme_button = ctk.CTkButton(window, textvariable = theme, command = change_theme, width = 1, font = customtkinter.CTkFont(family = "Arial", size = 11, weight="bold"), text_color = ("black", "white"))
+theme_button = ctk.CTkButton(window, 
+                             textvariable = theme, 
+                             command = change_theme, 
+                             width = 1, 
+                             font = customtkinter.CTkFont(family = "Arial", size = 11, weight="bold"), 
+                             text_color="white", 
+                             fg_color = ("black", "#1F6AA5"), 
+                             hover_color=("darkgrey", "#144870"))
 theme_button.place(x = 495, y = 195)
 
 window.mainloop()
