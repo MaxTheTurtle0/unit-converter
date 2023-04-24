@@ -670,6 +670,8 @@ def show_length_widgets():
     a_select_output.place_forget()
     v_label.pack_forget()
     v_convert_button.place_forget()
+    v_select_input.place_forget()
+    v_select_output.place_forget()
     m_select_input.place_forget()
     m_select_output.place_forget()
     m_label.pack_forget()
