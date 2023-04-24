@@ -14,15 +14,17 @@ window.resizable(False, False)
 ctk.set_appearance_mode("dark")
 
 # this function allows the user to just press enter to convert the values
-def current_convert(self):
+def current_convert(self = None):
     if t_convert_button.winfo_manager() == "place":
         t_convert()
     elif l_convert_button.winfo_manager() == "place":
         l_convert()
     elif a_convert_button.winfo_manager() == "place":
         a_convert()
-    else:
+    elif v_convert_button.winfo_manager() == "place":
         v_convert()
+    else:
+        m_convert()
 
 # these functions are used to convert the input values to the output values
 def t_convert():
@@ -529,6 +531,126 @@ def v_convert():
 
     output_box_text.set(result)
 
+def m_convert():
+    input_unit = m_select_input.get()
+    output_unit = m_select_output.get()
+    value = entry_int.get()
+
+    m_conversion_factors = {
+        "miligram [mg]": {
+            "gram [g]": 0.001,
+            "kilogram [kg]": 1e-6,	
+            "ton [t]": 1e-9,
+            "pound [lb]": 2.20462e-6,
+            "ounce [oz]": 3.5274e-5,
+            "stone [st]": 1.57473e-7,
+            "ton long [ton (UK)]": 9.84207e-10,
+            "ton short [ton (US)]": 1.10231e-9,
+            "miligram [mg]": 1,
+        },
+        "gram [g]": {
+            "miligram [mg]": 1000,
+            "kilogram [kg]": 0.001,
+            "ton [t]": 1e-6,
+            "pound [lb]": 0.00220462,
+            "ounce [oz]": 0.035274,
+            "stone [st]": 1.57473e-5,
+            "ton long [ton (UK)]": 9.84207e-8,
+            "ton short [ton (US)]": 1.10231e-7,
+            "gram [g]": 1
+        },
+
+        "kilogram [kg]": {
+            "miligram [mg]": 1000000,
+            "gram [g]": 1000,
+            "ton [t]": 0.001,
+            "pound [lb]": 2.20462,
+            "ounce [oz]": 35.274,
+            "stone [st]": 0.157473,
+            "ton long [ton (UK)]": 9.84207e-5,
+            "ton short [ton (US)]": 0.00110231,
+            "kilogram [kg]": 1
+        },
+
+        "ton [t]": {
+            "miligram [mg]": 1000000000,
+            "gram [g]": 1000000,
+            "kilogram [kg]": 1000,
+            "pound [lb]": 2204.62,
+            "ounce [oz]": 35274,
+            "stone [st]": 157.473,
+            "ton long [ton (UK)]": 0.984207,
+            "ton short [ton (US)]": 1.10231,
+            "ton [t]": 1
+        },
+
+        "pound [lb]": {
+            "miligram [mg]": 453592,
+            "gram [g]": 453.592,
+            "kilogram [kg]": 0.453592,
+            "ton [t]": 0.000453592,
+            "ounce [oz]": 16,
+            "stone [st]": 0.0714286,
+            "ton long [ton (UK)]": 0.000446429,
+            "ton short [ton (US)]": 0.0005,
+            "pound [lb]": 1
+        },
+
+        "ounce [oz]": {
+            "miligram [mg]": 28349.5,
+            "gram [g]": 28.3495,
+            "kilogram [kg]": 0.0283495,
+            "ton [t]": 2.835e-5,
+            "pound [lb]": 0.0625,
+            "stone [st]": 0.00446429,
+            "ton long [ton (UK)]": 2.79082e-5,
+            "ton short [ton (US)]": 3.125e-5,
+            "ounce [oz]": 1
+        },
+
+        "stone [st]": {
+            "miligram [mg]": 6350293,
+            "gram [g]": 6350.29,
+            "kilogram [kg]": 6.35029,
+            "ton [t]": 0.00635029,
+            "pound [lb]": 14,
+            "ounce [oz]": 224,
+            "ton long [ton (UK)]": 0.00625,
+            "ton short [ton (US)]": 0.007,
+            "stone [st]": 1
+        },
+
+        "ton long [ton (UK)]": {
+            "miligram [mg]": 1016047000,
+            "gram [g]": 1016047,
+            "kilogram [kg]": 1016.05,
+            "ton [t]": 1.01605,
+            "pound [lb]": 2240,
+            "ounce [oz]": 35840,
+            "stone [st]": 160,
+            "ton short [ton (US)]": 1.12,
+            "ton long [ton (UK)]": 1
+        },
+
+        "ton short [ton (US)]": {
+            "miligram [mg]": 907184740,
+            "gram [g]": 907184.74,
+            "kilogram [kg]": 907.185,
+            "ton [t]": 0.907185,
+            "pound [lb]": 2000,
+            "ounce [oz]": 32000,
+            "stone [st]": 142.857,
+            "ton long [ton (UK)]": 0.892857,
+            "ton short [ton (US)]": 1
+        }
+    }
+
+    factor = m_conversion_factors.get(input_unit, {}).get(output_unit, 1)
+    result = value * factor
+
+    output_box_text.set(result)
+
+
 def box_reset():
     output_box_text.set("")
     entry_int.set(0)
@@ -548,6 +670,10 @@ def show_length_widgets():
     a_select_output.place_forget()
     v_label.pack_forget()
     v_convert_button.place_forget()
+    m_select_input.place_forget()
+    m_select_output.place_forget()
+    m_label.pack_forget()
+    m_convert_button.place_forget()
     l_select_input.place(x = 175, y = 105)
     l_select_output.place(x = 360, y = 105)
     l_label.pack(fill = "both")
@@ -567,6 +693,10 @@ def show_temperature_widgets():
     v_select_output.place_forget()
     v_label.pack_forget()
     v_convert_button.place_forget()
+    m_select_input.place_forget()
+    m_select_output.place_forget()
+    m_label.pack_forget()
+    m_convert_button.place_forget()
     t_convert_button.place(x = 315, y = 150)
     t_select_input.place(x = 175, y = 105)
     t_select_output.place(x = 360, y = 105)
@@ -585,6 +715,10 @@ def show_area_widgets():
     v_select_input.place_forget()
     v_select_output.place_forget()
     v_label.pack_forget()
+    m_select_input.place_forget()
+    m_select_output.place_forget()
+    m_label.pack_forget()
+    m_convert_button.place_forget()
     v_convert_button.place_forget()
     a_convert_button.place(x = 315, y = 150)
     a_select_input.place(x = 175, y = 105)
@@ -605,10 +739,37 @@ def show_volume_widgets():
     a_select_output.place_forget()
     a_label.pack_forget()
     a_convert_button.place_forget()
+    m_select_input.place_forget()
+    m_select_output.place_forget()
+    m_label.pack_forget()
+    m_convert_button.place_forget()
     v_convert_button.place(x = 315, y = 150)
     v_select_input.place(x = 175, y = 105)
     v_select_output.place(x = 360, y = 105)
     v_label.pack(fill = "both")
+
+def show_mass_widgets():
+    box_reset()
+    t_convert_button.place_forget()
+    t_select_input.place_forget()
+    t_select_output.place_forget()
+    t_label.pack_forget()
+    l_select_input.place_forget()
+    l_select_output.place_forget()
+    l_label.pack_forget()
+    l_convert_button.place_forget()
+    a_select_input.place_forget()
+    a_select_output.place_forget()
+    a_label.pack_forget()
+    a_convert_button.place_forget()
+    v_select_input.place_forget()
+    v_select_output.place_forget()
+    v_label.pack_forget()
+    v_convert_button.place_forget()
+    m_convert_button.place(x = 315, y = 150)
+    m_select_input.place(x = 175, y = 105)
+    m_select_output.place(x = 360, y = 105)
+    m_label.pack(fill = "both")
 
 #this is the function for the button that will copy the result to the clipboard
 def copy_to_clipboard():
@@ -653,6 +814,7 @@ sidebar.rowconfigure(0, weight = 1)
 sidebar.rowconfigure(1, weight = 1)
 sidebar.rowconfigure(2, weight = 1)
 sidebar.rowconfigure(3, weight = 1)
+sidebar.rowconfigure(4, weight = 1)
 sidebar.columnconfigure(0, weight = 1)
 sidebar.pack(side="left", fill = "y")
 
@@ -893,6 +1055,65 @@ v_button = ctk.CTkButton(sidebar,
                          fg_color = ("black", "#1F6AA5"), 
                          hover_color=("darkgrey", "#144870"))
 v_button.grid(row = 3, column = 0, padx = 10, pady = 10, sticky = "ew")
+
+#Mass
+#This is where all the widgets regarding the Mass section are
+
+m_label = ctk.CTkLabel(window,
+                        text = "Mass",
+                        font = customtkinter.CTkFont(family = "Arial", size = 26, weight="bold"),
+                        text_color = ("black", "white"),
+                        bg_color = ("lightgrey", "black"))
+
+m_convert_button = ctk.CTkButton(window, text = "",
+                                image = my_image,
+                                font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"),
+                                command = m_convert,
+                                text_color="white",
+                                width=21,
+                                height=21,
+                                fg_color = ("black", "#1F6AA5"),
+                                hover_color=("darkgrey", "#144870"))
+
+m_select_input = customtkinter.CTkOptionMenu(window,
+                                            values = ["kilogram [kg]",
+                                                            "gram [g]",
+                                                            "milligram [mg]",
+                                                            "ton [t]",
+                                                            "long ton [ton]",
+                                                            "short ton [ton]",
+                                                            "pound [lb]",
+                                                            "ounce [oz]"],
+                                                            width = 130,
+                                                            text_color="white",
+                                                            fg_color = ("black", "#1F6AA5"),
+                                                            button_color = ("black","#144870"),
+                                                            button_hover_color = ("darkgrey", "#144870"))
+
+m_select_output = customtkinter.CTkOptionMenu(window,
+                                            values = ["miligram [mg]",
+                                                        "gram [g]",
+                                                        "kilogram [kg]",
+                                                        "ton [t]",
+                                                        "pound [lb]",
+                                                        "ounce [oz]",
+                                                        "stone [st]",
+                                                        "ton long [ton (UK)]",
+                                                        "ton short [ton (US)]"],
+                                                            width = 130,
+                                                            text_color="white",
+                                                            fg_color = ("black", "#1F6AA5"),
+                                                            button_color = ("black","#144870"),
+                                                            button_hover_color = ("darkgrey", "#144870"))
+
+m_button = ctk.CTkButton(sidebar,
+                        text = "Mass",
+                        font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"),
+                        command = show_mass_widgets,
+                        text_color="white",
+                        fg_color = ("black", "#1F6AA5"),
+                        hover_color=("darkgrey", "#144870"))
+m_button.grid(row = 4, column = 0, padx = 10, pady = 10, sticky = "ew")
 
 #copy to clipboard button
 copy_button = customtkinter.CTkButton(window, 
