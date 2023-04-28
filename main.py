@@ -1,10 +1,9 @@
 import dictionaries
-import tkinter as tk
 import customtkinter as ctk
 import customtkinter
 from PIL import Image
 
-my_image = customtkinter.CTkImage(light_image = Image.open("convert.png"),
+convert_button_image = customtkinter.CTkImage(light_image = Image.open("convert.png"),
                                   dark_image = Image.open("convert.png"),
                                   size = (20, 20))
 window = ctk.CTk()
@@ -91,7 +90,7 @@ output_box.configure(state ="disabled")
 output_box.place(x = 360, y = 150)
 
 #this is where the user is supposed to write his unit he wants converted
-entry_double = tk.DoubleVar()
+entry_double = ctk.DoubleVar()
 input_box = ctk.CTkEntry(window, 
                          width = 130, 
                          font = ("Arial", 14),  
@@ -100,7 +99,6 @@ input_box = ctk.CTkEntry(window,
 input_box.configure(validate="key")
 input_box.configure(validatecommand = (input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
 input_box.place(x=175, y=150)
-
 
 # this is the sidebar where the user can choose the conversion type
 sidebar = ctk.CTkFrame(window, fg_color = ("lightgrey","black"), corner_radius=0)
@@ -112,6 +110,7 @@ sidebar.rowconfigure(4, weight = 1)
 sidebar.columnconfigure(0, weight = 1)
 sidebar.pack(side="left", fill = "y")
 
+#label telling the user what type of conversion he is doing
 Label = ctk.CTkLabel(window, 
                        text = "Temperature", 
                        font = customtkinter.CTkFont(family = "Arial", size = 26, weight = "bold"), 
@@ -121,7 +120,6 @@ Label.pack(fill = "both")
 
 #Temperature
 #This is where all the widgets regarding the Temperature section are
-
 t_button = ctk.CTkButton(sidebar, 
                          text = "Temperature", 
                          font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
@@ -131,10 +129,8 @@ t_button = ctk.CTkButton(sidebar,
                          hover_color=("darkgrey", "#144870"))
 t_button.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "ew")
 
-
 #Length
 #This is where all the widgets regarding the Length section are
-
 l_button = ctk.CTkButton(sidebar, 
                          text = 
                          "Length", 
@@ -147,7 +143,6 @@ l_button.grid(row = 1, column = 0, padx = 10, pady = 10, sticky = "ew")
 
 #Area
 #This is where all the widgets regarding the Area section are
-
 a_button = ctk.CTkButton(sidebar, 
                          text = "Area", 
                          font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
@@ -157,10 +152,8 @@ a_button = ctk.CTkButton(sidebar,
                          hover_color=("darkgrey", "#144870"))
 a_button.grid(row = 2, column = 0, padx = 10, pady = 10, sticky = "ew")
 
-
 #Volume
 #This is where all the widgets regarding the Volume section are
-
 v_button = ctk.CTkButton(sidebar, 
                          text = "Volume", 
                          font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
@@ -172,7 +165,6 @@ v_button.grid(row = 3, column = 0, padx = 10, pady = 10, sticky = "ew")
 
 #Mass
 #This is where all the widgets regarding the Mass section are
-
 m_button = ctk.CTkButton(sidebar,
                         text = "Mass",
                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"),
@@ -194,7 +186,7 @@ copy_button = customtkinter.CTkButton(window,
 copy_button.place(x = 495, y = 150)
 
 #theme button
-theme = tk.StringVar(value = ctk.get_appearance_mode())
+theme = ctk.StringVar(value = ctk.get_appearance_mode())
 theme_button = ctk.CTkButton(window, 
                              textvariable = theme, 
                              command = change_theme, 
@@ -229,8 +221,9 @@ select_output = customtkinter.CTkOptionMenu(window,
                                             button_hover_color = ("darkgrey", "#144870"))
 select_output.place(x = 360, y = 105)
 
+#convert button
 convert_button = ctk.CTkButton(window, text = "",
-                                image = my_image,
+                                image = convert_button_image,
                                 font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"),
                                 command = lambda: convert("t"),
                                 text_color="white",
