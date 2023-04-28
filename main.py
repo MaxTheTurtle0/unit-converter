@@ -3,9 +3,6 @@ import customtkinter as ctk
 import customtkinter
 from PIL import Image
 
-convert_button_image = customtkinter.CTkImage(light_image = Image.open("convert.png"),
-                                  dark_image = Image.open("convert.png"),
-                                  size = (20, 20))
 window = ctk.CTk()
 window.title("Unit Converter")
 window.iconbitmap("app_icon.ico")
@@ -85,7 +82,7 @@ output_box = ctk.CTkEntry(window,
                           width = 130, 
                           font = ("Arial", 14),
                          textvariable = output_box_text)
-#disabling the Entry so that the user cant input anything in it
+#disabling the entry so that the user cant input anything in it
 output_box.configure(state ="disabled")
 output_box.place(x = 360, y = 150)
 
@@ -102,12 +99,9 @@ input_box.place(x=175, y=150)
 
 # this is the sidebar where the user can choose the conversion type
 sidebar = ctk.CTkFrame(window, fg_color = ("lightgrey","black"), corner_radius=0)
-sidebar.rowconfigure(0, weight = 1)
-sidebar.rowconfigure(1, weight = 1)
-sidebar.rowconfigure(2, weight = 1)
-sidebar.rowconfigure(3, weight = 1)
-sidebar.rowconfigure(4, weight = 1)
-sidebar.columnconfigure(0, weight = 1)
+for x in range(5):
+    sidebar.rowconfigure(x, weight = 1)
+    
 sidebar.pack(side="left", fill = "y")
 
 #label telling the user what type of conversion he is doing
@@ -220,6 +214,9 @@ select_output = customtkinter.CTkOptionMenu(window,
                                             button_color = ("black","#144870"),
                                             button_hover_color = ("darkgrey", "#144870"))
 select_output.place(x = 360, y = 105)
+
+#this is the image for the convert button
+convert_button_image = customtkinter.CTkImage(Image.open("convert.png"), size = (20, 20))
 
 #convert button
 convert_button = ctk.CTkButton(window, text = "",
