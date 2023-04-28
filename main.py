@@ -40,60 +40,31 @@ def box_reset():
     entry_double.set(0)
 
 #these functions are used to show the correct widgets for each conversion type
-def show_length_widgets():
+def show_widgets(s:str, conversion_factors:dict, title:str, values:str):
     box_reset()
-    convert_button.configure(command = lambda: convert("l"))
-    select_output.configure(values = dictionaries.l_values)
-    select_output.set(value = dictionaries.l_values[0])
-    select_input.configure(values = dictionaries.l_values)
-    select_input.set(value = dictionaries.l_values[0])
-    Label.configure(text = "Length")
+    convert_button.configure(command = lambda: convert(s))
+    select_output.configure(values = conversion_factors)
+    select_output.set(value = values[0])
+    select_input.configure(values = conversion_factors)
+    select_input.set(value = values[0])
+    Label.configure(text = title)
     input_box.configure(validate="key")
     input_box.configure(validatecommand = (input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
+
+def show_length_widgets():
+    show_widgets("l", dictionaries.l_conversion_factors, "Length", dictionaries.l_values)
 
 def show_temperature_widgets():
-    box_reset()
-    convert_button.configure(command = lambda: convert("t"))
-    select_output.configure(values = dictionaries.t_values)
-    select_output.set(value = dictionaries.t_values[0])
-    select_input.configure(values = dictionaries.t_values)
-    select_input.set(value = dictionaries.t_values[0])
-    Label.configure(text = "Temperature")
-    input_box.configure(validate="key")
-    input_box.configure(validatecommand = (input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
+    show_widgets("t", dictionaries.t_conversion_factors, "Temperature", dictionaries.t_values)
 
 def show_area_widgets():
-    box_reset()
-    convert_button.configure(command = lambda: convert("a"))
-    select_output.configure(values = dictionaries.a_values)
-    select_output.set(value = dictionaries.a_values[0])
-    select_input.configure(values = dictionaries.a_values)
-    select_input.set(value = dictionaries.a_values[0])
-    Label.configure(text = "Area")
-    input_box.configure(validate="key")
-    input_box.configure(validatecommand = (input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
+    show_widgets("a", dictionaries.a_conversion_factors, "Area", dictionaries.a_values)
 
 def show_volume_widgets():
-    box_reset()
-    convert_button.configure(command = lambda: convert("v"))
-    select_output.configure(values = dictionaries.v_values)
-    select_output.set(value = dictionaries.v_values[0])
-    select_input.configure(values = dictionaries.v_values)
-    select_input.set(value = dictionaries.v_values[0])
-    Label.configure(text = "Volume")
-    input_box.configure(validate="key")
-    input_box.configure(validatecommand = (input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
+    show_widgets("v", dictionaries.v_conversion_factors, "Volume", dictionaries.v_values)
 
 def show_mass_widgets():
-    box_reset()
-    convert_button.configure(command = lambda: convert("m"))
-    select_output.configure(values = dictionaries.m_values)
-    select_output.set(value = dictionaries.m_values[0])
-    select_input.configure(values = dictionaries.m_values)
-    select_input.set(value = dictionaries.m_values[0])
-    Label.configure(text = "Mass")
-    input_box.configure(validate="key")
-    input_box.configure(validatecommand = (input_box.register(lambda val: val.isdigit() or val == "." or val == "-"), '%S'))
+    show_widgets("m", dictionaries.m_conversion_factors, "Mass", dictionaries.m_values)
 
 #this is the function for the button that will copy the result to the clipboard
 def copy_to_clipboard():
