@@ -112,61 +112,24 @@ Label = ctk.CTkLabel(window,
                        bg_color = ("lightgrey", "black"))
 Label.pack(fill = "both")
 
-#Temperature
-#This is where all the widgets regarding the Temperature section are
-t_button = ctk.CTkButton(sidebar, 
-                         text = "Temperature", 
-                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
-                         command = show_temperature_widgets, 
-                         text_color="white", 
-                         fg_color = ("black", "#1F6AA5"), 
-                         hover_color=("darkgrey", "#144870"))
-t_button.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "ew")
+categories = [
+    ("Temperature", show_temperature_widgets),
+    ("Length", show_length_widgets),
+    ("Area", show_area_widgets),
+    ("Volume", show_volume_widgets),
+    ("Mass", show_mass_widgets)
+]
 
-#Length
-#This is where all the widgets regarding the Length section are
-l_button = ctk.CTkButton(sidebar, 
-                         text = 
-                         "Length", 
-                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
-                         command = show_length_widgets, 
-                         text_color="white", 
-                         fg_color = ("black", "#1F6AA5"), 
-                         hover_color=("darkgrey", "#144870"))
-l_button.grid(row = 1, column = 0, padx = 10, pady = 10, sticky = "ew")
-
-#Area
-#This is where all the widgets regarding the Area section are
-a_button = ctk.CTkButton(sidebar, 
-                         text = "Area", 
-                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
-                         command = show_area_widgets, 
-                         text_color="white", 
-                         fg_color = ("black", "#1F6AA5"), 
-                         hover_color=("darkgrey", "#144870"))
-a_button.grid(row = 2, column = 0, padx = 10, pady = 10, sticky = "ew")
-
-#Volume
-#This is where all the widgets regarding the Volume section are
-v_button = ctk.CTkButton(sidebar, 
-                         text = "Volume", 
-                         font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"), 
-                         command = show_volume_widgets, 
-                         text_color="white", 
-                         fg_color = ("black", "#1F6AA5"), 
-                         hover_color=("darkgrey", "#144870"))
-v_button.grid(row = 3, column = 0, padx = 10, pady = 10, sticky = "ew")
-
-#Mass
-#This is where all the widgets regarding the Mass section are
-m_button = ctk.CTkButton(sidebar,
-                        text = "Mass",
-                        font = customtkinter.CTkFont(family = "Arial", size = 16, weight="bold"),
-                        command = show_mass_widgets,
-                        text_color="white",
-                        fg_color = ("black", "#1F6AA5"),
-                        hover_color=("darkgrey", "#144870"))
-m_button.grid(row = 4, column = 0, padx = 10, pady = 10, sticky = "ew")
+# Create and place the buttons in the sidebar using a loop
+for row, (label, command) in enumerate(categories):
+    button = ctk.CTkButton(sidebar,
+                           text=label,
+                           font=customtkinter.CTkFont(family="Arial", size=16, weight="bold"),
+                           command=command,
+                           text_color="white",
+                           fg_color=("black", "#1F6AA5"),
+                           hover_color=("darkgrey", "#144870"))
+    button.grid(row=row, column=0, padx=10, pady=10, sticky="ew")
 
 #copy to clipboard button
 copy_button = customtkinter.CTkButton(window, 
