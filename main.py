@@ -110,7 +110,7 @@ Label = ctk.CTkLabel(window,
                        font = customtkinter.CTkFont(family = "Arial", size = 26, weight = "bold"), 
                        text_color = ("black", "white"), 
                        bg_color = ("lightgrey", "black"))
-Label.pack(fill = "both")
+Label.pack(fill = "both", ipady = 3)
 
 categories = [
     ("Temperature", show_temperature_widgets),
