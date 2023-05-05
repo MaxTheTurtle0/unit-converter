@@ -627,3 +627,173 @@ m_conversion_factors = {
             "ton short [ton (US)]": 1
         }
     }
+
+#Time dictionaries
+
+ti_values = ["picosecond [ps]",
+             "nanosecond [ns]", 
+             "microsecond [µs]", 
+             "milisecond [ms]", 
+             "second [s]", 
+             "minute [min]", 
+             "hour [h]", 
+             "day [d]", 
+             "week [wk]", 
+             "month [mo]", 
+             "year [yr]"]
+
+ti_conversion_factors = {
+        "picosecond [ps]": {
+            "nanosecond [ns]": 0.001,
+            "microsecond [µs]": 1e-6,
+            "milisecond [ms]": 1e-9,
+            "second [s]": 1e-12,
+            "minute [min]": 1.66667e-14,
+            "hour [h]": 2.77778e-16,
+            "day [d]": 1.15741e-17,
+            "week [wk]": 1.65344e-18,
+            "month [mo]": 3.80517e-19,
+            "year [yr]": 3.171e-20,
+            "picosecond [ps]": 1
+        },
+
+        "nanosecond [ns]": {
+            "picosecond [ps]": 1000,
+            "microsecond [µs]": 0.001,
+            "milisecond [ms]": 1e-6,
+            "second [s]": 1e-9,
+            "minute [min]": 1.66667e-11,
+            "hour [h]": 2.77778e-13,
+            "day [d]": 1.15741e-14,
+            "week [wk]": 1.65344e-15,
+            "month [mo]": 3.80517e-16,
+            "year [yr]": 3.171e-17,
+            "nanosecond [ns]": 1
+        },
+
+        "microsecond [µs]": {
+            "picosecond [ps]": 1000000,
+            "nanosecond [ns]": 1000,
+            "milisecond [ms]": 0.001,
+            "second [s]": 1e-6,
+            "minute [min]": 1.66667e-8,
+            "hour [h]": 2.77778e-10,
+            "day [d]": 1.15741e-11,
+            "week [wk]": 1.65344e-12,
+            "month [mo]": 3.80517e-13,
+            "year [yr]": 3.171e-14,
+            "microsecond [µs]": 1
+        },
+
+        "milisecond [ms]": {
+            "picosecond [ps]": 1000000000,
+            "nanosecond [ns]": 1000000,
+            "microsecond [µs]": 1000,
+            "second [s]": 0.001,
+            "minute [min]": 1.66667e-5,
+            "hour [h]": 2.77778e-7,
+            "day [d]": 1.15741e-8,
+            "week [wk]": 1.65344e-9,
+            "month [mo]": 3.80517e-10,
+            "year [yr]": 3.171e-11,
+            "milisecond [ms]": 1
+        },
+
+        "second [s]": {
+            "picosecond [ps]": 1000000000000,
+            "nanosecond [ns]": 1000000000,
+            "microsecond [µs]": 1000000,
+            "milisecond [ms]": 1000,
+            "minute [min]": 0.0166667,
+            "hour [h]": 0.000277778,
+            "day [d]": 1.15741e-5,
+            "week [wk]": 1.65344e-6,
+            "month [mo]": 3.80517e-7,
+            "year [yr]": 3.171e-8,
+            "second [s]": 1
+        },
+
+        "minute [min]": {
+            "picosecond [ps]": 60000000000000,
+            "nanosecond [ns]": 60000000000,
+            "microsecond [µs]": 60000000,
+            "milisecond [ms]": 60000,
+            "second [s]": 60,
+            "hour [h]": 0.0166667,
+            "day [d]": 0.000694444,
+            "week [wk]": 9.9206e-5,
+            "month [mo]": 2.28311e-5,
+            "year [yr]": 1.9026e-6,
+            "minute [min]": 1
+        },
+
+        "hour [h]": {
+            "picosecond [ps]": 3600000000000000,
+            "nanosecond [ns]": 3600000000000,
+            "microsecond [µs]": 3600000000,
+            "milisecond [ms]": 3600000,
+            "second [s]": 3600,
+            "minute [min]": 60,
+            "day [d]": 0.0416667,
+            "week [wk]": 0.00595238,
+            "month [mo]": 0.00136895,
+            "year [yr]": 0.000114079,
+            "hour [h]": 1
+        },
+
+        "day [d]": {
+            "picosecond [ps]": 86400000000000000,
+            "nanosecond [ns]": 86400000000000,
+            "microsecond [µs]": 86400000000,
+            "milisecond [ms]": 86400000,
+            "second [s]": 86400,
+            "minute [min]": 1440,
+            "hour [h]": 24,
+            "week [wk]": 0.142857,
+            "month [mo]": 0.0328767,
+            "year [yr]": 0.00273973,
+            "day [d]": 1
+        },
+
+        "week [wk]": {
+            "picosecond [ps]": 604800000000000000,
+            "nanosecond [ns]": 604800000000000,
+            "microsecond [µs]": 604800000000,
+            "milisecond [ms]": 604800000,
+            "second [s]": 604800,
+            "minute [min]": 10080,
+            "hour [h]": 168,
+            "day [d]": 7,
+            "month [mo]": 0.230137,
+            "year [yr]": 0.0191781,
+            "week [wk]": 1
+        },
+
+        "month [mo]": {
+            "picosecond [ps]": 2628000000000000000,
+            "nanosecond [ns]": 2628000000000000,
+            "microsecond [µs]": 2628000000000,
+            "milisecond [ms]": 2628000000,
+            "second [s]": 2628000,
+            "minute [min]": 43800,
+            "hour [h]": 730.001,
+            "day [d]": 30.4167,
+            "week [wk]": 4.34524,
+            "year [yr]": 0.0833333,
+            "month [mo]": 1
+        },
+
+        "year [yr]": {
+            "picosecond [ps]": 31540000000000000000,
+            "nanosecond [ns]": 31540000000000000,
+            "microsecond [µs]": 31540000000000,
+            "milisecond [ms]": 31540000000,
+            "second [s]": 31540000,
+            "minute [min]": 525600,
+            "hour [h]": 8760,
+            "day [d]": 365,
+            "week [wk]": 52.1429,
+            "month [mo]": 12,
+            "year [yr]": 1
+        }
+    }

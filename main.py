@@ -14,20 +14,10 @@ def convert(s:str):
     value = entry_double.get()
     input_unit = select_input.get()
     output_unit = select_output.get()
-    if s == "t":
-        if input_unit == output_unit:
-            result = value
-        else:
-            result = dictionaries.t_conversion_factors[input_unit][output_unit](value)
-    elif s == "l":
-        result = dictionaries.l_conversion_factors[input_unit][output_unit] * value
-    elif s == "a":
-        result = dictionaries.a_conversion_factors[input_unit][output_unit] * value
-    elif s == "v":
-        result = dictionaries.v_conversion_factors[input_unit][output_unit] * value
-    elif s == "m":
-        result = dictionaries.m_conversion_factors[input_unit][output_unit] * value
-    else:
+    try:
+        conversion_factor = getattr(dictionaries, s + "_conversion_factors")[input_unit][output_unit]
+        result = conversion_factor * value
+    except KeyError:
         result = "0"
     output_box_text.set(result)
 
@@ -62,6 +52,9 @@ def show_volume_widgets():
 def show_mass_widgets():
     show_widgets("m", dictionaries.m_conversion_factors, "Mass", dictionaries.m_values)
 
+def show_time_widgets():
+    show_widgets("ti", dictionaries.ti_conversion_factors, "Time", dictionaries.ti_values)
+
 #this is the function for the button that will copy the result to the clipboard
 def copy_to_clipboard():
     window.clipboard_clear()
@@ -81,7 +74,7 @@ output_box_text = ctk.StringVar()
 output_box = ctk.CTkEntry(window, 
                           width = 130, 
                           font = ("Arial", 14),
-                         textvariable = output_box_text)
+                          textvariable = output_box_text)
 #disabling the entry so that the user cant input anything in it
 output_box.configure(state ="disabled")
 output_box.place(x = 360, y = 150)
@@ -99,7 +92,7 @@ input_box.place(x=175, y=150)
 
 # this is the sidebar where the user can choose the conversion type
 sidebar = ctk.CTkFrame(window, fg_color = ("lightgrey","black"), corner_radius=0)
-for x in range(5):
+for x in range(6):
     sidebar.rowconfigure(x, weight = 1)
     
 sidebar.pack(side="left", fill = "y")
@@ -117,7 +110,8 @@ categories = [
     ("Length", show_length_widgets),
     ("Area", show_area_widgets),
     ("Volume", show_volume_widgets),
-    ("Mass", show_mass_widgets)
+    ("Mass", show_mass_widgets),
+    ("Time", show_time_widgets)
 ]
 
 # Create and place the buttons in the sidebar using a loop
