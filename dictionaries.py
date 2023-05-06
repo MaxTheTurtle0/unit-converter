@@ -797,3 +797,88 @@ ti_conversion_factors = {
             "year [yr]": 1
         }
     }
+
+
+#Pressure dictionaries
+
+p_values = [
+    "bar [bar]",
+    "pascal [Pa]",
+    "kilopascal [kPa]",
+    "megapascal [MPa]",
+    "atmosphere [atm]",
+    "millibar [mbar]",
+    "hectopascal [hPa]"
+]
+
+p_conversion_factors = {
+    "bar [bar]": {
+        "bar [bar]": 1,
+        "pascal [Pa]": 100000,
+        "kilopascal [kPa]": 100,
+        "megapascal [MPa]": 0.1,
+        "atmosphere [atm]": 0.986923,
+        "millibar [mbar]": 1000,
+        "hectopascal [hPa]": 1000,
+    },
+
+    "pascal [Pa]": {
+        "bar [bar]": 1e-5,
+        "pascal [Pa]": 1,
+        "kilopascal [kPa]": 0.001,
+        "megapascal [MPa]": 1e-6,
+        "atmosphere [atm]": 9.86923e-6,
+        "millibar [mbar]": 0.01,
+        "hectopascal [hPa]": 0.01,
+    },
+
+    "kilopascal [kPa]": {
+        "bar [bar]": 0.01,
+        "pascal [Pa]": 1000,
+        "kilopascal [kPa]": 1,
+        "megapascal [MPa]": 0.001,
+        "atmosphere [atm]": 0.00986923,
+        "millibar [mbar]": 10,
+        "hectopascal [hPa]": 10,
+    },
+    
+    "megapascal [MPa]": {
+        "bar [bar]": 10,
+        "pascal [Pa]": 1000000,
+        "kilopascal [kPa]": 1000,
+        "megapascal [MPa]": 1,
+        "atmosphere [atm]": 9.86923,
+        "millibar [mbar]": 10000,
+        "hectopascal [hPa]": 10000,
+    },
+
+    "atmosphere [atm]": {
+        "bar [bar]": 1.01325,
+        "pascal [Pa]": 101325,
+        "kilopascal [kPa]": 101.325,
+        "megapascal [MPa]": 0.101325,
+        "atmosphere [atm]": 1,
+        "millibar [mbar]": 1013.25,
+        "hectopascal [hPa]": 1013.25,
+    },
+
+    "millibar [mbar]": {
+        "bar [bar]": 0.001,
+        "pascal [Pa]": 100,
+        "kilopascal [kPa]": 0.1,
+        "megapascal [MPa]": 0.0001,
+        "atmosphere [atm]": 0.000986923,
+        "millibar [mbar]": 1,
+        "hectopascal [hPa]": 1,
+    },
+
+    "hectopascal [hPa]": {
+        "bar [bar]": 0.001,
+        "pascal [Pa]": 100,
+        "kilopascal [kPa]": 0.1,
+        "megapascal [MPa]": 0.0001,
+        "atmosphere [atm]": 0.000986923,
+        "millibar [mbar]": 1,
+        "hectopascal [hPa]": 1,
+    }
+}

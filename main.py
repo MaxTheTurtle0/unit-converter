@@ -86,9 +86,28 @@ input_box.place(x = 175, y = 150)
 
 # this is the sidebar where the user can choose the conversion type
 sidebar = ctk.CTkFrame(window, fg_color = ("lightgrey","black"), corner_radius = 0)
-for x in range(6):
+for x in range(7):
     sidebar.rowconfigure(x, weight = 1)
-    
+
+categories = [
+    ("Temperature", lambda: show_widgets("t", dictionaries.t_conversion_factors, "Temperature", dictionaries.t_values)),
+    ("Length", lambda: show_widgets("l", dictionaries.l_conversion_factors, "Length", dictionaries.l_values)),
+    ("Area", lambda: show_widgets("a", dictionaries.a_conversion_factors, "Area", dictionaries.a_values)),
+    ("Volume", lambda: show_widgets("v", dictionaries.v_conversion_factors, "Volume", dictionaries.v_values)),
+    ("Mass", lambda: show_widgets("m", dictionaries.m_conversion_factors, "Mass", dictionaries.m_values)),
+    ("Time", lambda: show_widgets("ti", dictionaries.ti_conversion_factors, "Time", dictionaries.ti_values)),
+    ("Pressure", lambda: show_widgets("p", dictionaries.p_conversion_factors, "Pressure", dictionaries.p_values))
+]
+
+for row, (label, command) in enumerate(categories):
+    button = ctk.CTkButton(sidebar,
+                           text = label,
+                           font = customtkinter.CTkFont(family="Arial", size=16, weight="bold"),
+                           command = command,
+                           fg_color = BUTTON_FG_COLOR,
+                           hover_color = BUTTON_HOVER_COLOR)
+    button.grid(row = row, column = 0, padx = 10, pady = 10, sticky = "ew")
+
 sidebar.pack(side = "left", fill = "y")
 
 #label telling the user what type of conversion he is doing
@@ -98,25 +117,6 @@ Label = ctk.CTkLabel(window,
                        text_color = ("black", "white"), 
                        bg_color = ("lightgrey", "black"))
 Label.pack(fill = "both", ipady = 3)
-
-categories = [
-    ("Temperature", lambda: show_widgets("t", dictionaries.t_conversion_factors, "Temperature", dictionaries.t_values)),
-    ("Length", lambda: show_widgets("l", dictionaries.l_conversion_factors, "Length", dictionaries.l_values)),
-    ("Area", lambda: show_widgets("a", dictionaries.a_conversion_factors, "Area", dictionaries.a_values)),
-    ("Volume", lambda: show_widgets("v", dictionaries.v_conversion_factors, "Volume", dictionaries.v_values)),
-    ("Mass", lambda: show_widgets("m", dictionaries.m_conversion_factors, "Mass", dictionaries.m_values)),
-    ("Time", lambda: show_widgets("ti", dictionaries.ti_conversion_factors, "Time", dictionaries.ti_values))
-]
-
-# Create and place the buttons in the sidebar using a loop
-for row, (label, command) in enumerate(categories):
-    button = ctk.CTkButton(sidebar,
-                           text = label,
-                           font = customtkinter.CTkFont(family="Arial", size=16, weight="bold"),
-                           command = command,
-                           fg_color = BUTTON_FG_COLOR,
-                           hover_color = BUTTON_HOVER_COLOR)
-    button.grid(row = row, column = 0, padx = 10, pady = 10, sticky = "ew")
 
 #copy to clipboard button
 copy_button = customtkinter.CTkButton(window, 
@@ -163,10 +163,8 @@ select_output = customtkinter.CTkOptionMenu(window,
                                             button_hover_color = ("darkgrey", "#144870"))
 select_output.place(x = 360, y = 105)
 
-#this is the image for the convert button
-convert_button_image = customtkinter.CTkImage(Image.open("convert.png"), size = (20, 20))
-
 #convert button
+convert_button_image = customtkinter.CTkImage(Image.open("convert.png"), size = (20, 20))
 convert_button = ctk.CTkButton(window, 
                                 text = "",
                                 image = convert_button_image,
@@ -176,5 +174,7 @@ convert_button = ctk.CTkButton(window,
                                 fg_color = BUTTON_FG_COLOR,
                                 hover_color = BUTTON_HOVER_COLOR)
 convert_button.place(x = 315, y = 150)
+
+
 
 window.mainloop()
