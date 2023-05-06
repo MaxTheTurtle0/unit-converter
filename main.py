@@ -175,6 +175,4 @@ convert_button = ctk.CTkButton(window,
                                 hover_color = BUTTON_HOVER_COLOR)
 convert_button.place(x = 315, y = 150)
 
-
-
 window.mainloop()
